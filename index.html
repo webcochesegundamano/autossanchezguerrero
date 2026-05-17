@@ -49,31 +49,71 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-bg">
-            <div class="hero-overlay"></div>
-            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920" alt="Coche de lujo" class="hero-img">
+    <!-- Premium Hero Section -->
+    <section class="hero-premium" id="hero-premium">
+        <div class="hero-premium-bg" id="hero-bg">
+            <div class="hero-premium-overlay"></div>
+            <div class="hero-premium-gradient"></div>
+            <img id="hero-car-image" src="" alt="Vehículo Premium" class="hero-premium-img">
         </div>
-        <div class="container hero-content">
-            <span class="hero-badge fade-in-up">Bienvenidos a Autos Sanchez Guerrero</span>
-            <h1 class="hero-title fade-in-up">Tu Próximo Coche <span class="text-accent">Te Espera</span></h1>
-            <p class="hero-subtitle fade-in-up">Seleccionamos cuidadosamente cada vehículo para garantizarte la máxima calidad y confianza. Precios inigualables en Las Gabias, Granada.</p>
-            <div class="hero-btns fade-in-up">
-                <a href="inventario.html" class="btn btn-primary">
-                    <i data-lucide="search" style="width:18px"></i> Ver Inventario
+        
+        <div class="container hero-premium-content">
+            <p class="hero-premium-tagline" id="hero-tagline">Tu próximo coche te espera</p>
+            <div class="hero-premium-badge">
+                <span class="badge-shimmer">VEHÍCULO PREMIUM</span>
+            </div>
+            
+            <h1 class="hero-premium-title">
+                <span class="hero-premium-brand" id="hero-brand"></span>
+                <span class="hero-premium-model" id="hero-model"></span>
+            </h1>
+            
+            <div class="hero-premium-specs" id="hero-specs">
+                <div class="spec-chip">
+                    <i data-lucide="calendar" style="width:16px"></i>
+                    <span id="hero-year"></span>
+                </div>
+                <div class="spec-chip">
+                    <i data-lucide="gauge" style="width:16px"></i>
+                    <span id="hero-km"></span>
+                </div>
+                <div class="spec-chip">
+                    <i data-lucide="fuel" style="width:16px"></i>
+                    <span id="hero-fuel"></span>
+                </div>
+                <div class="spec-chip">
+                    <i data-lucide="settings" style="width:16px"></i>
+                    <span id="hero-transmission"></span>
+                </div>
+            </div>
+            
+            <div class="hero-premium-price">
+                <span class="price-currency">€</span>
+                <span class="price-amount" id="hero-price-value">0</span>
+            </div>
+            
+            <div class="hero-premium-actions">
+                <a href="" id="hero-car-link" class="btn btn-premium">
+                    <i data-lucide="eye" style="width:18px"></i> Ver este vehículo
                 </a>
-                <a href="https://wa.me/34722277313" class="btn btn-outline" style="margin-left: 1rem;">
-                    <i data-lucide="message-circle" style="width:18px"></i> Pregúntanos
+                <a href="https://wa.me/34722277313" id="hero-whatsapp" class="btn btn-premium-outline">
+                    <i data-lucide="message-circle" style="width:18px"></i> Preguntar por WhatsApp
                 </a>
             </div>
+        </div>
+        
+        <div class="hero-scroll-indicator">
+            <div class="scroll-mouse">
+                <div class="scroll-wheel"></div>
+            </div>
+            <span>Descubre más</span>
         </div>
     </section>
 
     <!-- Featured Cars -->
     <section class="py-lg">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title reveal">
                 <div>
                     <h2>Vehículos <span class="text-accent">Destacados</span></h2>
                     <p>Nuestras mejores ofertas seleccionadas para ti esta semana.</p>
@@ -82,7 +122,6 @@
             </div>
             
             <div id="featured-cars-grid" class="cards-grid">
-                <!-- Data populated by app.js -->
                 <div class="text-center py-md">Cargando ofertas...</div>
             </div>
         </div>
@@ -91,31 +130,31 @@
     <!-- Why Choose Us -->
     <section class="py-lg" style="background: var(--bg-secondary);">
         <div class="container text-center">
-            <div class="section-title" style="flex-direction: column; align-items: center; text-align: center; margin-bottom: 4rem;">
+            <div class="section-title reveal" style="flex-direction: column; align-items: center; text-align: center; margin-bottom: 4rem;">
                 <h2>¿Por qué elegir <span class="text-accent">Autos Sanchez Guerrero</span>?</h2>
                 <p>Más que un concesionario, somos tu taller de confianza en Las Gabias.</p>
             </div>
             
             <div class="grid grid-cols-12 gap-md" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
-                <div class="feature-card glass">
+                <div class="feature-card glass reveal stagger-1">
                     <div class="feature-icon"><i data-lucide="check-circle-2"></i></div>
                     <h3>Calidad Garantizada</h3>
                     <p>Cada vehículo pasa una inspección técnica rigurosa antes de ser puesto a la venta.</p>
                 </div>
                 
-                <div class="feature-card glass">
+                <div class="feature-card glass reveal stagger-2">
                     <div class="feature-icon"><i data-lucide="trending-down"></i></div>
                     <h3>Precios Competitivos</h3>
                     <p>Mantenemos los márgenes ajustados para ofrecerte el mejor precio de toda la región.</p>
                 </div>
                 
-                <div class="feature-card glass">
+                <div class="feature-card glass reveal stagger-3">
                     <div class="feature-icon"><i data-lucide="users"></i></div>
                     <h3>Trato Personalizado</h3>
                     <p>Te asesoramos en cada paso para que encuentres el coche que realmente necesitas.</p>
                 </div>
                 
-                <div class="feature-card glass">
+                <div class="feature-card glass reveal stagger-4">
                     <div class="feature-icon"><i data-lucide="shield"></i></div>
                     <h3>Transparencia Total</h3>
                     <p>Kilómetraje certificado y toda la documentación lista para transferir sin sorpresas.</p>
@@ -127,17 +166,17 @@
     <!-- Stats -->
     <section class="py-xl">
         <div class="container">
-            <div class="glass" style="padding: 3rem; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; border-color: var(--accent-primary);">
+            <div class="glass reveal" style="padding: 3rem; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; border-color: var(--accent-primary);">
                 <div class="text-center">
-                    <h2 style="font-size: 3rem; color: var(--accent-primary); margin-bottom: 0;">20+</h2>
+                    <h2 style="font-size: 3rem; color: var(--accent-primary); margin-bottom: 0;" class="counter" data-target="20">0+</h2>
                     <p class="text-muted">Años de Experiencia</p>
                 </div>
                 <div class="text-center">
-                    <h2 style="font-size: 3rem; margin-bottom: 0;">1500+</h2>
+                    <h2 style="font-size: 3rem; margin-bottom: 0;" class="counter" data-target="1500">0+</h2>
                     <p class="text-muted">Vehículos Vendidos</p>
                 </div>
                 <div class="text-center">
-                    <h2 style="font-size: 3rem; margin-bottom: 0;">100%</h2>
+                    <h2 style="font-size: 3rem; margin-bottom: 0;" class="counter" data-target="100">0%</h2>
                     <p class="text-muted">Clientes Satisfechos</p>
                 </div>
             </div>
@@ -189,7 +228,6 @@
     <!-- JS -->
     <script src="js/app.js"></script>
     <script>
-        // Initialize Lucide icons
         lucide.createIcons();
     </script>
 </body>

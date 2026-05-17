@@ -6,7 +6,10 @@ document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
     initMobileMenu();
     loadFeaturedCars();
+    loadPremiumHero();
     initScrollAnimations();
+    initCounters();
+    initParallax();
 });
 
 // Header scroll effect
@@ -28,9 +31,142 @@ function initMobileMenu() {
     if (toggle) {
         toggle.addEventListener('click', () => {
             nav.classList.toggle('active');
-            // Inline mobile styles if needed, but better via CSS
         });
     }
+}
+
+// Load premium hero car (most expensive non-commercial vehicle)
+async function loadPremiumHero() {
+    const heroSection = document.getElementById('hero-premium');
+    if (!heroSection) return;
+
+    try {
+        const response = await fetch('data/inventory.json');
+        const data = await response.json();
+        
+        // Find the most expensive car (excluding commercial vans)
+        const cars = data.cars.filter(c => !c.sold);
+        const premiumCar = cars.reduce((max, car) => {
+            const isCommercial = car.model.toLowerCase().includes('sprinter') || 
+                                car.model.toLowerCase().includes('carga') ||
+                                car.brand.toLowerCase().includes('sprinter');
+            return (!isCommercial && car.price > max.price) ? car : max;
+        }, cars[0]);
+
+        if (!premiumCar) return;
+
+        // Update hero content
+        document.getElementById('hero-car-image').src = premiumCar.imageUrl;
+        document.getElementById('hero-car-image').alt = `${premiumCar.brand} ${premiumCar.model}`;
+        document.getElementById('hero-brand').textContent = premiumCar.brand;
+        document.getElementById('hero-model').textContent = premiumCar.model;
+        document.getElementById('hero-year').textContent = premiumCar.year;
+        
+        const formattedKm = new Intl.NumberFormat('es-ES').format(premiumCar.km);
+        document.getElementById('hero-km').textContent = `${formattedKm} km`;
+        document.getElementById('hero-fuel').textContent = premiumCar.fuel;
+        document.getElementById('hero-transmission').textContent = premiumCar.transmission;
+        
+        document.getElementById('hero-car-link').href = `coche.html?id=${premiumCar.id}`;
+        document.getElementById('hero-whatsapp').href = `https://wa.me/34722277313?text=Hola,%20estoy%20interesado%20en%20el%20${encodeURIComponent(premiumCar.brand + ' ' + premiumCar.model)}%20de%20Autos%20Sanchez%20Guerrero.`;
+
+        // Animate price counter
+        animateCounter('hero-price-value', premiumCar.price, 1500);
+        
+    } catch (error) {
+        console.error('Error loading premium hero:', error);
+    }
+}
+
+// Animate counter from 0 to target
+function animateCounter(elementId, target, duration = 1500) {
+    const element = document.getElementById(elementId);
+    if (!element) return;
+
+    const start = 0;
+    const startTime = performance.now();
+
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(start + (target - start) * eased);
+        
+        element.textContent = new Intl.NumberFormat('es-ES').format(current);
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+
+    requestAnimationFrame(update);
+}
+
+// Parallax effect on hero background
+function initParallax() {
+    const heroBg = document.getElementById('hero-bg');
+    if (!heroBg) return;
+
+    let ticking = false;
+    
+    window.addEventListener('scroll', () => {
+        if (!ticking) {
+            requestAnimationFrame(() => {
+                const scrolled = window.scrollY;
+                const heroHeight = document.getElementById('hero-premium')?.offsetHeight || 700;
+                
+                if (scrolled < heroHeight) {
+                    const parallaxValue = scrolled * 0.3;
+                    heroBg.style.transform = `translateY(${parallaxValue}px)`;
+                }
+                
+                ticking = false;
+            });
+            ticking = true;
+        }
+    });
+}
+
+// Counter animation for stats
+function initCounters() {
+    const counters = document.querySelectorAll('.counter');
+    if (counters.length === 0) return;
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                const target = parseInt(el.dataset.target);
+                const suffix = el.textContent.includes('+') ? '+' : el.textContent.includes('%') ? '%' : '+';
+                
+                animateCounterElement(el, target, suffix, 2000);
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+}
+
+function animateCounterElement(element, target, suffix, duration) {
+    const startTime = performance.now();
+
+    function update(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(target * eased);
+        
+        element.textContent = current.toLocaleString('es-ES') + suffix;
+        
+        if (progress < 1) {
+            requestAnimationFrame(update);
+        }
+    }
+
+    requestAnimationFrame(update);
 }
 
 // Loads cars with featured: true from inventory.json
@@ -49,7 +185,7 @@ async function loadFeaturedCars() {
         }
 
         featuredGrid.innerHTML = featured.map(car => createCarCardHTML(car)).join('');
-        lucide.createIcons(); // Re-initialize icons for new elements
+        lucide.createIcons();
     } catch (error) {
         console.error('Error loading cars:', error);
         featuredGrid.innerHTML = '<p class="text-center text-danger">Error al cargar el inventario.</p>';
@@ -87,7 +223,19 @@ function createCarCardHTML(car) {
 
 // Scroll animations with IntersectionObserver
 function initScrollAnimations() {
-    const observer = new IntersectionObserver((entries) => {
+    // Handle reveal elements
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Handle fade-in-up elements
+    const fadeObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
@@ -95,5 +243,5 @@ function initScrollAnimations() {
         });
     }, { threshold: 0.1 });
 
-    document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+    document.querySelectorAll('.fade-in-up').forEach(el => fadeObserver.observe(el));
 }
