@@ -527,28 +527,29 @@
     min-height: 100svh;
     max-height: none;
     padding: 0;
-    align-items: flex-start;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
   }
   
   .hero-premium-bg {
-    position: fixed;
+    position: absolute;
     inset: 0;
     z-index: -1;
   }
   
   .hero-premium-img {
     height: 100%;
-    object-position: center 55%;
-    filter: brightness(0.50) saturate(1.2);
+    object-position: center 50%;
+    filter: brightness(0.70) saturate(1.3);
   }
   
   .hero-premium-overlay {
     background: linear-gradient(180deg, 
-      rgba(10, 10, 15, 0.97) 0%, 
-      rgba(10, 10, 15, 0.88) 20%, 
-      rgba(10, 10, 15, 0.65) 42%,
-      rgba(10, 10, 15, 0.30) 60%,
-      rgba(10, 10, 15, 0.05) 80%,
+      rgba(10, 10, 15, 0.65) 0%, 
+      rgba(10, 10, 15, 0.35) 20%, 
+      rgba(10, 10, 15, 0.10) 45%,
+      rgba(10, 10, 15, 0.0) 65%,
       rgba(10, 10, 15, 0.0) 100%);
   }
   
@@ -557,12 +558,15 @@
   }
   
   .hero-premium-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     margin-top: 0;
     padding: 0 var(--space-sm);
     max-width: 100%;
     text-align: center;
-    padding-top: 4.5rem;
-    padding-bottom: 14rem;
+    padding-top: 3.5rem;
+    padding-bottom: 5rem;
   }
   
   .hero-premium-tagline {
@@ -631,6 +635,7 @@
   }
   
   .hero-premium-actions {
+    margin-top: auto;
     gap: 0.5rem;
     margin-bottom: 0;
     padding: 0 0.25rem;
@@ -645,13 +650,13 @@
   }
   
   .hero-scroll-indicator {
-    position: fixed;
-    bottom: 4.5rem;
+    position: absolute;
+    bottom: 1.5rem;
     left: 50%;
     transform: translateX(-50%);
     font-size: 0.6rem;
     letter-spacing: 1.5px;
-    z-index: 10;
+    z-index: 5;
   }
   
   .scroll-mouse {
