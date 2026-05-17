@@ -31,7 +31,7 @@
     <header class="main-header" id="header">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <span class="logo-text">AUTOS SANCHEZ GUERRERO</span>
+                <img src="img/logo.png" alt="Autos Sanchez Guerrero">
             </a>
             
             <nav class="main-nav">
@@ -43,6 +43,9 @@
                 </ul>
             </nav>
 
+            <button class="theme-toggle" id="theme-toggle" aria-label="Cambiar tema">
+                <i data-lucide="moon"></i>
+            </button>
             <button class="mobile-menu-toggle" id="menu-toggle">
                 <i data-lucide="menu"></i>
             </button>
@@ -88,8 +91,14 @@
             </div>
             
             <div class="hero-premium-price">
-                <span class="price-currency">€</span>
-                <span class="price-amount" id="hero-price-value">0</span>
+                <div class="price-original-row">
+                    <span class="price-original" id="hero-price-original"></span>
+                    <span class="price-save-badge" id="hero-save-badge"></span>
+                </div>
+                <div class="price-current-row">
+                    <span class="price-currency">€</span>
+                    <span class="price-amount" id="hero-price-value">0</span>
+                </div>
             </div>
             
             <div class="hero-premium-actions">

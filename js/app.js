@@ -5,6 +5,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     initHeaderScroll();
     initMobileMenu();
+    initThemeToggle();
     loadFeaturedCars();
     loadPremiumHero();
     initScrollAnimations();
@@ -33,6 +34,30 @@ function initMobileMenu() {
             nav.classList.toggle('active');
         });
     }
+}
+
+// Theme toggle (dark/light)
+function initThemeToggle() {
+    const toggle = document.getElementById('theme-toggle');
+    const icon = toggle?.querySelector('i');
+    const saved = localStorage.getItem('theme');
+
+    if (saved === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+        if (icon) icon.setAttribute('data-lucide', 'sun');
+    }
+
+    toggle?.addEventListener('click', () => {
+        const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+        const newTheme = isDark ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', isDark ? 'light' : '');
+        localStorage.setItem('theme', newTheme);
+
+        if (icon) {
+            icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
+            lucide.createIcons();
+        }
+    });
 }
 
 // Load premium hero car (most expensive non-commercial vehicle)
@@ -70,20 +95,33 @@ async function loadPremiumHero() {
         document.getElementById('hero-car-link').href = `coche.html?id=${premiumCar.id}`;
         document.getElementById('hero-whatsapp').href = `https://wa.me/34722277313?text=Hola,%20estoy%20interesado%20en%20el%20${encodeURIComponent(premiumCar.brand + ' ' + premiumCar.model)}%20de%20Autos%20Sanchez%20Guerrero.`;
 
-        // Animate price counter
-        animateCounter('hero-price-value', premiumCar.price, 1500);
+        // Calculate discount from ~15.000€
+        const originalPrice = 15000;
+        const savings = originalPrice - premiumCar.price;
+        
+        // Show original price (crossed out) and savings badge
+        const originalEl = document.getElementById('hero-price-original');
+        const saveEl = document.getElementById('hero-save-badge');
+        if (originalEl) {
+            originalEl.textContent = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(originalPrice);
+        }
+        if (saveEl && savings > 0) {
+            saveEl.textContent = `Ahorra ${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(savings)}`;
+        }
+
+        // Animate price counter: count DOWN from originalPrice to actual price
+        animateCounter('hero-price-value', premiumCar.price, 1500, originalPrice);
         
     } catch (error) {
         console.error('Error loading premium hero:', error);
     }
 }
 
-// Animate counter from 0 to target
-function animateCounter(elementId, target, duration = 1500) {
+// Animate counter from start to target (supports counting up or down)
+function animateCounter(elementId, target, duration = 1500, start = 0) {
     const element = document.getElementById(elementId);
     if (!element) return;
 
-    const start = 0;
     const startTime = performance.now();
 
     function update(currentTime) {

@@ -13,7 +13,7 @@
 .car-card:hover {
   transform: translateY(-8px);
   border-color: var(--accent-primary);
-  box-shadow: 0 10px 20px -5px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 10px 20px -5px rgba(230, 57, 70, 0.3);
 }
 
 .car-img-wrapper {
@@ -45,7 +45,7 @@
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.5);
+  box-shadow: 0 4px 10px rgba(230, 57, 70, 0.5);
   z-index: 10;
 }
 
@@ -76,7 +76,7 @@
   font-weight: 700;
   font-size: 1.15rem;
   border-left: 3px solid var(--accent-secondary);
-  border: 1px solid rgba(245, 158, 11, 0.3);
+  border: 1px solid rgba(230, 57, 70, 0.3);
 }
 
 .car-info {
@@ -129,12 +129,12 @@
 .btn-primary {
   background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-hover));
   color: white;
-  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
 }
 
 .btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+  box-shadow: 0 6px 20px rgba(230, 57, 70, 0.4);
 }
 
 .btn-outline {
@@ -239,16 +239,16 @@
 }
 
 .badge-shimmer {
-  background: linear-gradient(135deg, var(--accent-secondary), #fbbf24, var(--accent-secondary));
+  background: linear-gradient(135deg, var(--accent-primary), #f8fafc, var(--accent-primary));
   background-size: 200% 200%;
-  color: #0a0a0f;
+  color: #0f0f0f;
   padding: 0.4rem 1.2rem;
   border-radius: 50px;
   font-size: 0.75rem;
   font-weight: 800;
   letter-spacing: 3px;
   animation: shimmer 3s ease infinite;
-  box-shadow: 0 0 30px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 0 30px var(--accent-glow);
 }
 
 /* Title */
@@ -315,6 +315,38 @@
   animation: fadeInUp 0.8s ease 0.8s forwards;
   margin-bottom: 1.5rem;
   display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.price-original-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.price-original {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  text-decoration: line-through;
+  font-weight: 500;
+}
+
+.price-save-badge {
+  display: inline-flex;
+  align-items: center;
+  background: var(--accent-primary);
+  color: white;
+  padding: 0.2rem 0.7rem;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.price-current-row {
+  display: flex;
   align-items: baseline;
   gap: 0.25rem;
 }
@@ -322,16 +354,16 @@
 .price-currency {
   font-size: 1.8rem;
   font-weight: 700;
-  color: var(--accent-secondary);
+  color: var(--accent-primary);
   vertical-align: super;
 }
 
 .price-amount {
   font-size: 3.5rem;
   font-weight: 800;
-  color: var(--accent-secondary);
+  color: var(--accent-primary);
   letter-spacing: -2px;
-  text-shadow: 0 0 40px rgba(245, 158, 11, 0.2);
+  text-shadow: 0 0 40px var(--accent-glow);
   line-height: 1;
 }
 
@@ -345,8 +377,8 @@
 }
 
 .btn-premium {
-  background: linear-gradient(135deg, var(--accent-secondary), #fbbf24);
-  color: #0a0a0f;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-primary-hover));
+  color: white;
   padding: 1rem 2rem;
   border-radius: 8px;
   font-weight: 700;
@@ -358,7 +390,7 @@
   gap: 0.75rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 8px 30px rgba(245, 158, 11, 0.3);
+  box-shadow: 0 8px 30px var(--accent-glow);
   position: relative;
   overflow: hidden;
   text-decoration: none;
@@ -381,7 +413,7 @@
 
 .btn-premium:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 40px rgba(245, 158, 11, 0.4);
+  box-shadow: 0 12px 40px rgba(230, 57, 70, 0.5);
 }
 
 .btn-premium-outline {
@@ -475,7 +507,7 @@
 .car-card:hover {
   transform: translateY(-8px);
   border-color: var(--accent-primary);
-  box-shadow: 0 15px 40px -5px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 15px 40px -5px rgba(230, 57, 70, 0.3);
 }
 
 /* Counter animation */
@@ -623,7 +655,16 @@
   
   .hero-premium-price {
     margin-bottom: 0.6rem;
-    justify-content: center;
+    align-items: center;
+  }
+  
+  .price-original {
+    font-size: 0.85rem;
+  }
+  
+  .price-save-badge {
+    font-size: 0.55rem;
+    padding: 0.15rem 0.5rem;
   }
   
   .price-amount {
@@ -787,7 +828,7 @@
 .feature-icon {
   width: 70px;
   height: 70px;
-  background: rgba(59, 130, 246, 0.1);
+  background: rgba(230, 57, 70, 0.1);
   border-radius: 50%;
   display: flex;
   align-items: center;
