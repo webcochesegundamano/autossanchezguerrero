@@ -1,0 +1,138 @@
+/* Header / Navigation */
+.main-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: var(--space-sm) 0;
+  transition: var(--transition);
+  background: transparent;
+}
+
+.main-header.scrolled {
+  background: rgba(10, 10, 15, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 0.75rem 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo img {
+  height: 48px;
+  width: auto;
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.main-nav ul {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-link {
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--accent-primary);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--text-main);
+}
+
+/* Footer */
+.main-footer {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--glass-border);
+  padding-top: var(--space-lg);
+  padding-bottom: var(--space-md);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.footer-col h4 {
+  margin-bottom: var(--space-sm);
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.footer-links li {
+  margin-bottom: 0.75rem;
+}
+
+.footer-links a:hover {
+  color: var(--accent-primary);
+  padding-left: 5px;
+}
+
+.contact-info li {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  color: var(--text-muted);
+}
+
+.contact-info i {
+  color: var(--accent-primary);
+  width: 20px;
+}
+
+.footer-bottom {
+  text-align: center;
+  border-top: 1px solid var(--glass-border);
+  padding-top: var(--space-md);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+/* Responsive Grid for Listings */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--space-md);
+}
+
+@media (max-width: 900px) {
+  .main-nav {
+    display: none; /* Mobile menu needed */
+  }
+  .mobile-menu-toggle {
+    display: block;
+  }
+}
+
+@media (max-width: 600px) {
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}

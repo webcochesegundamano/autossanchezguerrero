@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoSardi | Coches de Segunda Mano en Antequera</title>
+    <meta name="description" content="Concesionario líder en Antequera. Coches de ocasión revisados con la mejor relación calidad-precio. Tu próximo coche te espera en Automóviles Sardi.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/components.css">
+    
+    <!-- JS -->
+    <script src="js/seo.js"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="AutoSardi | Calidad y Confianza en Cada Coche">
+    <meta property="og:description" content="Coches de ocasión en Antequera con revisión garantizada y los mejores precios del mercado.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://autosardi.es">
+    <meta property="og:image" content="img/hero.webp">
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="main-header" id="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="img/logo.png" alt="AutoSardi Logo" style="height: 50px;">
+            </a>
+            
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html" class="nav-link active">Inicio</a></li>
+                    <li><a href="inventario.html" class="nav-link">Inventario</a></li>
+                    <li><a href="sobre-nosotros.html" class="nav-link">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html" class="nav-link">Contacto</a></li>
+                </ul>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="menu-toggle">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-bg">
+            <div class="hero-overlay"></div>
+            <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=1920" alt="Coche de lujo" class="hero-img">
+        </div>
+        <div class="container hero-content">
+            <span class="hero-badge fade-in-up">Bienvenidos a AutoSardi</span>
+            <h1 class="hero-title fade-in-up">Tu Próximo Coche <span class="text-accent">Te Espera</span></h1>
+            <p class="hero-subtitle fade-in-up">Seleccionamos cuidadosamente cada vehículo para garantizarte la máxima calidad y confianza. Precios inigualables en Antequera.</p>
+            <div class="hero-btns fade-in-up">
+                <a href="inventario.html" class="btn btn-primary">
+                    <i data-lucide="search" style="width:18px"></i> Ver Inventario
+                </a>
+                <a href="https://wa.me/34656369021" class="btn btn-outline" style="margin-left: 1rem;">
+                    <i data-lucide="message-circle" style="width:18px"></i> Pregúntanos
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Cars -->
+    <section class="py-lg">
+        <div class="container">
+            <div class="section-title">
+                <div>
+                    <h2>Vehículos <span class="text-accent">Destacados</span></h2>
+                    <p>Nuestras mejores ofertas seleccionadas para ti esta semana.</p>
+                </div>
+                <a href="inventario.html" class="btn btn-outline btn-sm">Ver Todo <i data-lucide="arrow-right" style="width:12px"></i></a>
+            </div>
+            
+            <div id="featured-cars-grid" class="cards-grid">
+                <!-- Data populated by app.js -->
+                <div class="text-center py-md">Cargando ofertas...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section class="py-lg" style="background: var(--bg-secondary);">
+        <div class="container text-center">
+            <div class="section-title" style="flex-direction: column; align-items: center; text-align: center; margin-bottom: 4rem;">
+                <h2>¿Por qué elegir <span class="text-accent">AutoSardi</span>?</h2>
+                <p>Más que un concesionario, somos tu taller de confianza en Antequera.</p>
+            </div>
+            
+            <div class="grid grid-cols-12 gap-md" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));">
+                <div class="feature-card glass">
+                    <div class="feature-icon"><i data-lucide="check-circle-2"></i></div>
+                    <h3>Calidad Garantizada</h3>
+                    <p>Cada vehículo pasa una inspección técnica rigurosa antes de ser puesto a la venta.</p>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon"><i data-lucide="trending-down"></i></div>
+                    <h3>Precios Competitivos</h3>
+                    <p>Mantenemos los márgenes ajustados para ofrecerte el mejor precio de toda la región.</p>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon"><i data-lucide="users"></i></div>
+                    <h3>Trato Personalizado</h3>
+                    <p>Te asesoramos en cada paso para que encuentres el coche que realmente necesitas.</p>
+                </div>
+                
+                <div class="feature-card glass">
+                    <div class="feature-icon"><i data-lucide="shield"></i></div>
+                    <h3>Transparencia Total</h3>
+                    <p>Kilómetraje certificado y toda la documentación lista para transferir sin sorpresas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-xl">
+        <div class="container">
+            <div class="glass" style="padding: 3rem; display: flex; justify-content: space-around; flex-wrap: wrap; gap: 2rem; border-color: var(--accent-primary);">
+                <div class="text-center">
+                    <h2 style="font-size: 3rem; color: var(--accent-primary); margin-bottom: 0;">20+</h2>
+                    <p class="text-muted">Años de Experiencia</p>
+                </div>
+                <div class="text-center">
+                    <h2 style="font-size: 3rem; margin-bottom: 0;">1500+</h2>
+                    <p class="text-muted">Vehículos Vendidos</p>
+                </div>
+                <div class="text-center">
+                    <h2 style="font-size: 3rem; margin-bottom: 0;">100%</h2>
+                    <p class="text-muted">Clientes Satisfechos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container footer-content">
+            <div class="footer-col">
+                <div class="logo-text" style="font-size: 1.8rem; margin-bottom: 1.5rem;">AUTOSARDI</div>
+                <p class="text-muted" style="font-size: 0.9rem;">Tu concesionario de confianza en Antequera. Especialistas en vehículos de ocasión con revisión mecánica completa.</p>
+                <div class="social-links" style="margin-top: 1.5rem; display: flex; gap: 1rem;">
+                    <a href="#" class="feature-icon" style="width: 40px; height: 40px; font-size: 1rem;"><i data-lucide="facebook"></i></a>
+                    <a href="#" class="feature-icon" style="width: 40px; height: 40px; font-size: 1rem;"><i data-lucide="instagram"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Enlaces Rápidos</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="inventario.html">Ver Inventario</a></li>
+                    <li><a href="sobre-nosotros.html">Sobre Nosotros</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <ul class="contact-info">
+                    <li><i data-lucide="map-pin"></i> José Antonio Muñoz Rojas N5, Antequera, España</li>
+                    <li><i data-lucide="phone"></i> +34 656 369 021</li>
+                    <li><i data-lucide="mail"></i> contacto@autosardi.es</li>
+                    <li><i data-lucide="clock"></i> L-D: 10:00-14:00 y 17:00-20:00</li>
+                </ul>
+            </div>
+        </div>
+        <div class="container footer-bottom">
+            <p>&copy; 2026 Automóviles Sardi. Todos los derechos reservados. <a href="#">Aviso Legal</a> | <a href="#">Privacidad</a></p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp -->
+    <a href="https://wa.me/34656369021" class="whatsapp-fixed" target="_blank">
+        <i data-lucide="message-circle"></i>
+    </a>
+
+    <!-- JS -->
+    <script src="js/app.js"></script>
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

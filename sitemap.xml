@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://autosardi.es/index.html</loc><priority>1.0</priority></url>
+  <url><loc>https://autosardi.es/inventario.html</loc><priority>0.9</priority></url>
+  <url><loc>https://autosardi.es/sobre-nosotros.html</loc><priority>0.7</priority></url>
+  <url><loc>https://autosardi.es/contacto.html</loc><priority>0.8</priority></url>
+  <!-- Car Detail Pages -->
+  <url><loc>https://autosardi.es/coche.html?id=ford-focus-1-6-trend-2008</loc><priority>0.8</priority></url>
+  <url><loc>https://autosardi.es/coche.html?id=volkswagen-caravelle-2-5-tdi-2008</loc><priority>0.8</priority></url>
+  <url><loc>https://autosardi.es/coche.html?id=chevrolet-aveo-1-3-75cv-2013</loc><priority>0.8</priority></url>
+  <url><loc>https://autosardi.es/coche.html?id=mercedes-benz-clase-c-200-2008</loc><priority>0.8</priority></url>
+  <url><loc>https://autosardi.es/coche.html?id=seat-altea-xl-1-9-tdi-2008</loc><priority>0.8</priority></url>
+  <url><loc>https://autosardi.es/coche.html?id=fiat-500l-1-3-85cv-2014</loc><priority>0.8</priority></url>
+  <url><loc>https://autosardi.es/coche.html?id=peugeot-407-sw-2-0-hdi-2006</loc><priority>0.8</priority></url>
+  <url><loc>https://autosardi.es/coche.html?id=alfa-romeo-147-1-9-jtd-2004</loc><priority>0.8</priority></url>
+  <url><loc>https://autosardi.es/coche.html?id=opel-corsa-cmon-1-3-2008</loc><priority>0.8</priority></url>
+  <url><loc>https://autosardi.es/coche.html?id=opel-combo-tour-2008</loc><priority>0.8</priority></url>
+  <url><loc>https://autosardi.es/coche.html?id=audi-a3-sportback-2008</loc><priority>0.8</priority></url>
+</urlset>
