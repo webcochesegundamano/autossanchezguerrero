@@ -15,36 +15,31 @@ function injectLocalBusinessSchema() {
     const schema = {
         "@context": "https://schema.org",
         "@type": "AutoDealer",
-        "name": "Automóviles Sardi",
-        "alternateName": "AutoSardi",
-        "description": "Tu concesionario de confianza en Antequera. Venta de coches de segunda mano revisados.",
-        "url": "https://autosardi.es",
-        "telephone": "+34656369021",
+        "name": "Autos Sanchez Guerrero",
+        "alternateName": "Autos Sanchez Guerrero S.L.",
+        "description": "Compraventa de vehículos de segunda mano en Las Gabias, Granada. CIF B22868863. Comercio al por menor de vehículos de motor (CNAE 4781).",
+        "url": "https://brochetateam.github.io/autossanchezguerrero/",
+        "telephone": "+34722277313",
+        "email": "autossanchezguerrero@gmail.com",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "José Antonio Muñoz Rojas N5",
-            "addressLocality": "Antequera",
-            "addressRegion": "Málaga",
-            "postalCode": "29200",
+            "streetAddress": "Calle Islas, 1",
+            "addressLocality": "Las Gabias",
+            "addressRegion": "Granada",
+            "postalCode": "18110",
             "addressCountry": "ES"
         },
         "geo": {
             "@type": "GeoCoordinates",
-            "latitude": 37.0180436,
-            "longitude": -4.5668388
+            "latitude": 37.1333,
+            "longitude": -3.6333
         },
         "openingHoursSpecification": [
             {
                 "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                "opens": "10:00",
-                "closes": "14:00"
-            },
-            {
-                "@type": "OpeningHoursSpecification",
-                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-                "opens": "17:00",
-                "closes": "20:00"
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+                "opens": "09:00",
+                "closes": "19:00"
             }
         ]
     };
@@ -66,11 +61,11 @@ async function handlePageSpecificSEO() {
 
             if (car) {
                 // Update title and meta description
-                document.title = `${car.brand} ${car.model} (${car.year}) | AutoSardi Antequera`;
+                document.title = `${car.brand} ${car.model} (${car.year}) | Autos Sanchez Guerrero Las Gabias`;
                 
                 const metaDesc = document.querySelector('meta[name="description"]');
                 if (metaDesc) {
-                    metaDesc.setAttribute('content', `Comprar ${car.brand} ${car.model} de segunda mano en Antequera. Solo ${car.km} km, combustible ${car.fuel}, transmisión ${car.transmission}. Revisado y garantizado.`);
+                    metaDesc.setAttribute('content', `Comprar ${car.brand} ${car.model} de segunda mano en Las Gabias, Granada. Solo ${car.km} km, combustible ${car.fuel}, transmisión ${car.transmission}. Revisado y garantizado.`);
                 }
 
                 // Inject Vehicle Schema

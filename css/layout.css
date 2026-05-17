@@ -31,13 +31,21 @@
 
 .logo-text {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.5rem;
-  letter-spacing: -1px;
-  color: var(--text-main);
+  font-weight: 800;
+  font-size: 1.1rem;
+  letter-spacing: 1px;
+  color: var(--accent-primary);
+  text-transform: uppercase;
+  line-height: 1.2;
   display: flex;
   align-items: center;
   gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .logo-text {
+    font-size: 0.85rem;
+  }
 }
 
 .main-nav ul {

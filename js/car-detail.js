@@ -37,7 +37,7 @@ async function loadCarDetail(id) {
         // Update WhatsApp link message
         const whatsappBtn = document.getElementById('whatsapp-detail');
         if (whatsappBtn) {
-            whatsappBtn.href = `https://wa.me/34656369021?text=Hola,%20estoy%20interesado%20en%20el%20${encodeURIComponent(car.brand + ' ' + car.model)}%20de%20AutoSardi.`;
+            whatsappBtn.href = `https://wa.me/34722277313?text=Hola,%20estoy%20interesado%20en%20el%20${encodeURIComponent(car.brand + ' ' + car.model)}%20de%20Autos%20Sanchez%20Guerrero.`;
         }
 
         renderCarDetail(car, data.cars);
@@ -108,12 +108,12 @@ function renderCarDetail(car, allCars) {
                     </ul>
 
                     <div class="actions" style="display: flex; flex-direction: column; gap: 1rem;">
-                        <a href="https://wa.me/34656369021?text=Hola,%20estoy%20interesado%20en%20el%20${encodeURIComponent(car.brand + ' ' + car.model)}" class="btn btn-whatsapp" style="width: 100%;">
+                        <a href="https://wa.me/34722277313?text=Hola,%20estoy%20interesado%20en%20el%20${encodeURIComponent(car.brand + ' ' + car.model)}" class="btn btn-whatsapp" style="width: 100%;">
                             <i data-lucide="message-circle"></i> Me interesa por WhatsApp
                         </a>
                         <a href="contacto.html?car=${car.id}" class="btn btn-outline" style="width: 100%;">Solicitar Prueba / Financiación</a>
                         <a href="${car.adUrl}" target="_blank" class="btn btn-sm text-accent" style="margin-top: 1rem; border: none; font-size: 0.8rem;">
-                            Ver anuncio en Milanuncios <i data-lucide="external-link" style="width:12px"></i>
+                            Ver anuncio en Wallapop <i data-lucide="external-link" style="width:12px"></i>
                         </a>
                     </div>
                 </div>
