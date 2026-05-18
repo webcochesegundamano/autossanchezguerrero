@@ -190,8 +190,9 @@ def convert_item_to_car(item):
     # Generar ID
     car_id = generate_id(title, item_id)
     
-    # URL del anuncio
-    ad_url = f"https://es.wallapop.com/item/{item_id}"
+    # URL del anuncio (usando el slug completo con nombre + ID numérico)
+    slug = item.get("slug", item_id) if item.get("slug") else item_id
+    ad_url = f"https://es.wallapop.com/item/{slug}"
     
     # Imagenes
     images = item.get("images", [])
