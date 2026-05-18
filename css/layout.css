@@ -89,15 +89,11 @@
   font-size: 0.95rem;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  color: var(--text-muted);
+  color: #9ca3af;
 }
 
 .nav-link:hover {
   color: var(--accent-primary);
-}
-
-[data-theme="light"] .nav-link {
-  color: #334155;
 }
 
 .nav-link.active {
