@@ -13,9 +13,17 @@ import json
 import time
 from pathlib import Path
 
-WALLAPOP_USER_ID = "pj9yr70yvk6e"
 BASE_DIR = Path(__file__).parent.parent
 OUTPUT_PATH = BASE_DIR / "data" / "reviews.json"
+
+# Config from config.json (falls back to defaults)
+CONFIG_PATH = BASE_DIR / "config.json"
+config = {}
+if CONFIG_PATH.exists():
+    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+        config = json.load(f)
+
+WALLAPOP_USER_ID = config.get("wallapop_user_id", "pj9yr70yvk6e")
 
 API_HEADERS = {
     "X-DeviceOS": "0",

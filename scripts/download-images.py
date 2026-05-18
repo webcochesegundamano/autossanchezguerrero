@@ -17,9 +17,16 @@ from pathlib import Path
 from PIL import Image
 from io import BytesIO
 
-# Configuracion
-WALLAPOP_USER_ID = "pj9yr70yvk6e"
+# Config from config.json (falls back to defaults)
 BASE_DIR = Path(__file__).parent.parent
+CONFIG_PATH = BASE_DIR / "config.json"
+config = {}
+if CONFIG_PATH.exists():
+    with open(CONFIG_PATH, "r", encoding="utf-8") as f:
+        config = json.load(f)
+
+WALLAPOP_USER_ID = config.get("wallapop_user_id", "pj9yr70yvk6e")
+BASE_URL = config.get("site", {}).get("domain", "https://brochetateam.github.io/autossanchezguerrero")
 IMG_DIR = BASE_DIR / "img" / "cars"
 INVENTORY_PATH = BASE_DIR / "data" / "inventory.json"
 SITEMAP_PATH = BASE_DIR / "sitemap.xml"
@@ -285,7 +292,7 @@ def generate_inventory(cars):
 
 def generate_sitemap(cars):
     """Genera el sitemap.xml actualizado."""
-    base_url = "https://brochetateam.github.io/autossanchezguerrero"
+    base_url = BASE_URL
     
     urls = [
         ("index.html", "1.0"),
