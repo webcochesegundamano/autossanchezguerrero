@@ -99,18 +99,22 @@ async function loadPremiumHero() {
         const originalPrice = 15000;
         const savings = originalPrice - premiumCar.price;
         
-        // Show original price (crossed out) and savings badge
+        // Show original price (crossed out)
         const originalEl = document.getElementById('hero-price-original');
         const saveEl = document.getElementById('hero-save-badge');
         if (originalEl) {
             originalEl.textContent = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(originalPrice);
         }
         if (saveEl && savings > 0) {
-            saveEl.textContent = `Ahorra ${new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(savings)}`;
+            saveEl.textContent = `Ahorra 0 €`;
         }
 
-        // Animate price counter: count DOWN from originalPrice to actual price
-        animateCounter('hero-price-value', premiumCar.price, 1500, originalPrice);
+        // Animate price DOWN and savings UP simultaneously
+        const duration = 2800;
+        animateCounter('hero-price-value', premiumCar.price, duration, originalPrice);
+        if (saveEl && savings > 0) {
+            animateCounter('hero-save-badge', savings, duration, 0, 'Ahorra ');
+        }
         
     } catch (error) {
         console.error('Error loading premium hero:', error);
@@ -118,7 +122,7 @@ async function loadPremiumHero() {
 }
 
 // Animate counter from start to target (supports counting up or down)
-function animateCounter(elementId, target, duration = 1500, start = 0) {
+function animateCounter(elementId, target, duration = 1500, start = 0, prefix = '') {
     const element = document.getElementById(elementId);
     if (!element) return;
 
@@ -132,7 +136,8 @@ function animateCounter(elementId, target, duration = 1500, start = 0) {
         const eased = 1 - Math.pow(1 - progress, 3);
         const current = Math.round(start + (target - start) * eased);
         
-        element.textContent = new Intl.NumberFormat('es-ES').format(current);
+        const formatted = new Intl.NumberFormat('es-ES').format(current);
+        element.textContent = prefix ? `${prefix}${formatted} €` : formatted;
         
         if (progress < 1) {
             requestAnimationFrame(update);
