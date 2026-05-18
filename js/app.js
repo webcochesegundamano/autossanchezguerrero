@@ -357,7 +357,9 @@ async function loadReviews() {
                     </div>
                 </div>
                 <div class="review-card-comment">"${review.comment}"</div>
-                <div class="review-card-car">${review.carTitle}</div>
+                <div class="review-card-car">${review.wallapopUrl
+                    ? `<a href="${review.wallapopUrl}" target="_blank" rel="noopener">${review.carTitle}</a>`
+                    : review.carTitle}</div>
             </div>
         `).join('');
 

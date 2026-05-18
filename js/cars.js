@@ -8,6 +8,7 @@ const filters = {
     brand: '',
     maxPrice: 30000,
     transmission: '',
+    showSold: false,
     sortBy: 'price-asc'
 };
 
@@ -75,6 +76,7 @@ function initFilters() {
         filters.brand = '';
         filters.maxPrice = 30000;
         filters.transmission = '';
+        filters.showSold = false;
         
         if (searchInput) searchInput.value = '';
         if (brandSelect) brandSelect.value = '';
@@ -86,6 +88,9 @@ function initFilters() {
         document.querySelectorAll('.filter-chip').forEach(chip => {
             chip.classList.toggle('active', chip.dataset.val === '');
         });
+
+        const showSoldCheck = document.getElementById('show-sold');
+        if (showSoldCheck) showSoldCheck.checked = false;
 
         renderFilteredCars();
     });
@@ -104,6 +109,15 @@ function initFilters() {
             renderFilteredCars();
         });
     });
+
+    // Show sold toggle
+    const showSoldCheck = document.getElementById('show-sold');
+    if (showSoldCheck) {
+        showSoldCheck.addEventListener('change', (e) => {
+            filters.showSold = e.target.checked;
+            renderFilteredCars();
+        });
+    }
 }
 
 // Core filtering engine
@@ -113,6 +127,7 @@ function renderFilteredCars() {
     if (!grid) return;
 
     let filtered = allCars.filter(car => {
+        if (!filters.showSold && car.sold) return false;
         const matchesSearch = car.brand.toLowerCase().includes(filters.search) || 
                               car.model.toLowerCase().includes(filters.search);
         const matchesBrand = filters.brand === '' || car.brand === filters.brand;
@@ -137,7 +152,21 @@ function renderFilteredCars() {
     if (filtered.length === 0) {
         grid.innerHTML = '<div class="text-center py-lg" style="grid-column: 1/-1;">No se encontraron coches con estos filtros.</div>';
     } else {
-        grid.innerHTML = filtered.map(car => createCarCardHTML(car)).join('');
+        const active = filtered.filter(c => !c.sold);
+        const sold = filtered.filter(c => c.sold);
+        let html = '';
+        if (active.length > 0) {
+            html += active.map(car => createCarCardHTML(car)).join('');
+        }
+        if (sold.length > 0) {
+            html += `<div style="grid-column: 1/-1; margin-top: 2rem; padding-top: 2rem; border-top: 1px solid var(--glass-border);">
+                        <h3 style="margin-bottom: 1.5rem;">Vendidos <span class="text-accent">recientemente</span></h3>
+                        <div class="cards-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem;">
+                            ${sold.map(car => createCarCardHTML(car)).join('')}
+                        </div>
+                    </div>`;
+        }
+        grid.innerHTML = html;
         lucide.createIcons();
     }
 

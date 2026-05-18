@@ -53,12 +53,16 @@ def transform_reviews(raw_reviews):
         count += 1
         rating_distribution[rating] = rating_distribution.get(rating, 0) + 1
 
+        web_link = item.get("web_link", "")
+        wallapop_url = f"https://es.wallapop.com/item/{web_link}" if web_link else ""
+
         reviews.append({
             "userName": user.get("micro_name", "Anónimo"),
             "rating": rating,
             "date": review.get("published", ""),
             "comment": review.get("comments", "").strip(),
             "carTitle": item.get("title", ""),
+            "wallapopUrl": wallapop_url,
             "userAvatar": user.get("image", {}).get("xsmall", ""),
             "carImage": item.get("image", {}).get("small", ""),
         })

@@ -53,9 +53,9 @@ function renderCarDetail(car, allCars) {
     const formattedPrice = new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(car.price);
     const formattedKm = new Intl.NumberFormat('es-ES').format(car.km);
 
-    // Filter similar cars (same brand or price range)
+    // Filter similar cars (same brand or price range, excluding sold)
     const similar = allCars
-        .filter(c => c.id !== car.id && (c.brand === car.brand || Math.abs(c.price - car.price) < 2000))
+        .filter(c => c.id !== car.id && !c.sold && (c.brand === car.brand || Math.abs(c.price - car.price) < 2000))
         .slice(0, 3);
 
     container.innerHTML = `

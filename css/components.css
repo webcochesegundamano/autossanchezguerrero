@@ -1002,6 +1002,17 @@
   margin-top: auto;
 }
 
+.review-card-car a {
+  color: var(--accent-primary);
+  text-decoration: none;
+  font-style: normal;
+  font-weight: 600;
+}
+
+.review-card-car a:hover {
+  text-decoration: underline;
+}
+
 .review-card-date {
   font-size: 0.75rem;
   color: var(--text-muted);
@@ -1038,8 +1049,5 @@
   .reviews-skeleton {
     min-width: 280px;
     max-width: 280px;
-  }
-  #reviews-section {
-    padding-top: var(--space-lg);
   }
 }
