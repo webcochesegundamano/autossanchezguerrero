@@ -34,30 +34,50 @@ function initMobileMenu() {
             nav.classList.toggle('active');
         });
     }
+    // Close menu when a nav link is clicked
+    document.querySelectorAll('.main-nav .nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('active');
+        });
+    });
 }
 
 // Theme toggle (dark/light)
 function initThemeToggle() {
-    const toggle = document.getElementById('theme-toggle');
-    const icon = toggle?.querySelector('i');
+    const desktopToggle = document.querySelector('.theme-toggle-desktop');
+    const navToggle = document.getElementById('theme-toggle');
+    const navIcon = navToggle?.querySelector('i');
+    const navLabel = document.getElementById('theme-label');
+    const desktopIcon = desktopToggle?.querySelector('i');
     const saved = localStorage.getItem('theme');
 
+    const applyTheme = (isLight) => {
+        if (isLight) {
+            document.documentElement.setAttribute('data-theme', 'light');
+            if (navIcon) navIcon.setAttribute('data-lucide', 'sun');
+            if (desktopIcon) desktopIcon.setAttribute('data-lucide', 'sun');
+            if (navLabel) navLabel.textContent = 'Modo Claro';
+        } else {
+            document.documentElement.removeAttribute('data-theme');
+            if (navIcon) navIcon.setAttribute('data-lucide', 'moon');
+            if (desktopIcon) desktopIcon.setAttribute('data-lucide', 'moon');
+            if (navLabel) navLabel.textContent = 'Modo Oscuro';
+        }
+        lucide.createIcons();
+    };
+
     if (saved === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-        if (icon) icon.setAttribute('data-lucide', 'sun');
+        applyTheme(true);
     }
 
-    toggle?.addEventListener('click', () => {
-        const isDark = document.documentElement.getAttribute('data-theme') !== 'light';
-        const newTheme = isDark ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', isDark ? 'light' : '');
-        localStorage.setItem('theme', newTheme);
+    const toggleHandler = () => {
+        const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        applyTheme(!isLight);
+        localStorage.setItem('theme', !isLight ? 'light' : 'dark');
+    };
 
-        if (icon) {
-            icon.setAttribute('data-lucide', isDark ? 'sun' : 'moon');
-            lucide.createIcons();
-        }
-    });
+    desktopToggle?.addEventListener('click', toggleHandler);
+    navToggle?.addEventListener('click', toggleHandler);
 }
 
 // Load premium hero car (most expensive non-commercial vehicle)
