@@ -73,10 +73,12 @@ function renderCarDetail(car, allCars) {
                     <img src="${car.imageUrl}" alt="${car.brand} ${car.model}" style="width: 100%; border-radius: var(--br-md);">
                 </div>
                 
+                <!-- Comentado: Coches Relacionados (pendiente de rediseñar posicion)
                 <h3 style="margin-top: 3rem; margin-bottom: 1.5rem;">Coches <span class="text-accent">Relacionados</span></h3>
                 <div class="cards-grid">
                     ${similar.map(c => createCarCardHTML(c)).join('')}
                 </div>
+                -->
             </div>
 
             <!-- Sidebar Info (Right) -->
