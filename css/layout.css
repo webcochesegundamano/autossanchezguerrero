@@ -42,7 +42,7 @@
   font-family: var(--font-heading);
   font-weight: 700;
   font-size: 1rem;
-  color: var(--text-main);
+  color: #ffffff;
   white-space: nowrap;
   letter-spacing: 0.5px;
 }
@@ -52,7 +52,7 @@
     display: block;
     flex: 1;
     text-align: center;
-    font-size: 0.85rem;
+    font-size: 1rem;
     padding: 0 0.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -61,7 +61,7 @@
 
 @media (max-width: 400px) {
   .header-title {
-    font-size: 0.7rem;
+    font-size: 0.85rem;
   }
 }
 
@@ -94,6 +94,10 @@
 
 .nav-link:hover {
   color: var(--accent-primary);
+}
+
+[data-theme="light"] .nav-link {
+  color: #334155;
 }
 
 .nav-link.active {

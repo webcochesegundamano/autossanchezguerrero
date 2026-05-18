@@ -261,7 +261,7 @@
   display: block;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-main);
+  color: #f8fafc;
   text-transform: uppercase;
   letter-spacing: 4px;
   margin-bottom: 0.25rem;
@@ -326,7 +326,7 @@
 
 .price-original {
   font-size: 1.1rem;
-  color: var(--text-muted);
+  color: rgba(248, 250, 252, 0.5);
   text-decoration: line-through;
   font-weight: 500;
 }
@@ -360,7 +360,7 @@
 .price-amount {
   font-size: 2.6rem;
   font-weight: 800;
-  color: var(--text-main);
+  color: #f8fafc;
   letter-spacing: -2px;
   text-shadow: 0 0 40px var(--accent-glow);
   line-height: 1;
