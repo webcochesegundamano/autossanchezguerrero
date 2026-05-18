@@ -157,6 +157,17 @@
   transform: scale(1.05);
 }
 
+.btn-wallapop {
+  background: #13C1AC;
+  color: white;
+}
+
+.btn-wallapop:hover {
+  background: #0FA896;
+  color: white;
+  transform: scale(1.02);
+}
+
 .btn-sm {
   padding: 0.4rem 1rem;
   font-size: 0.75rem;

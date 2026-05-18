@@ -113,9 +113,9 @@ function renderCarDetail(car, allCars) {
                         <a href="https://wa.me/34722277313?text=Hola,%20estoy%20interesado%20en%20el%20${encodeURIComponent(car.brand + ' ' + car.model)}" class="btn btn-whatsapp" style="width: 100%;">
                             <i data-lucide="message-circle"></i> Me interesa por WhatsApp
                         </a>
-                        <a href="contacto.html?car=${car.id}" class="btn btn-outline" style="width: 100%;">Solicitar Prueba / Financiación</a>
-                        <a href="${car.adUrl}" target="_blank" class="btn btn-sm text-accent" style="margin-top: 1rem; border: none; font-size: 0.8rem;">
-                            Ver anuncio en Wallapop <i data-lucide="external-link" style="width:12px"></i>
+                        <a href="contacto.html?car=${car.id}" class="btn btn-primary" style="width: 100%;">Solicitar Prueba</a>
+                        <a href="${car.adUrl}" target="_blank" class="btn btn-wallapop" style="width: 100%;">
+                            Ver anuncio en Wallapop <i data-lucide="external-link" style="width:14px"></i>
                         </a>
                     </div>
                 </div>
