@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initThemeToggle();
     loadFeaturedCars();
     loadPremiumHero();
+    loadReviews();
     initScrollAnimations();
     initCounters();
     initParallax();
@@ -307,4 +308,86 @@ function initScrollAnimations() {
     }, { threshold: 0.1 });
 
     document.querySelectorAll('.fade-in-up').forEach(el => fadeObserver.observe(el));
+}
+
+// Load reviews from Wallapop
+async function loadReviews() {
+    const track = document.getElementById('reviews-track');
+    if (!track) return;
+
+    try {
+        const response = await fetch('data/reviews.json');
+        const data = await response.json();
+        const reviews = data.reviews;
+        const summary = data.summary;
+
+        if (reviews.length === 0) {
+            track.innerHTML = '<p class="text-center text-muted">No hay valoraciones disponibles.</p>';
+            return;
+        }
+
+        // Update summary
+        const avgEl = document.getElementById('reviews-average');
+        const countEl = document.getElementById('reviews-count');
+        const starsEl = document.getElementById('reviews-stars-summary');
+
+        if (avgEl) avgEl.textContent = summary.average;
+        if (countEl) countEl.textContent = `(${summary.total} valoraciones)`;
+
+        if (starsEl) {
+            const full = Math.round(summary.average);
+            starsEl.innerHTML = '<i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>';
+            starsEl.dataset.rating = full;
+        }
+
+        // Render cards
+        track.innerHTML = reviews.map(review => `
+            <div class="review-card" data-rating="${review.rating}">
+                <div class="review-card-header">
+                    ${review.userAvatar
+                        ? `<img src="${review.userAvatar}" alt="${review.userName}" class="review-card-avatar" loading="lazy">`
+                        : `<div class="review-card-avatar" style="background:var(--accent-primary);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:1rem;">${review.userName.charAt(0)}</div>`
+                    }
+                    <div>
+                        <div class="review-card-user">${review.userName}</div>
+                        <div class="review-card-date">${review.date}</div>
+                    </div>
+                    <div class="review-card-stars">
+                        <i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i><i data-lucide="star"></i>
+                    </div>
+                </div>
+                <div class="review-card-comment">"${review.comment}"</div>
+                <div class="review-card-car">${review.carTitle}</div>
+            </div>
+        `).join('');
+
+        lucide.createIcons();
+
+        // Apply star fill colors after Lucide renders SVGs
+        const summaryStars = document.getElementById('reviews-stars-summary');
+        const summaryRating = summaryStars ? parseInt(summaryStars.dataset.rating) : 5;
+        document.querySelectorAll('.review-card').forEach(card => {
+            const rating = parseInt(card.dataset.rating);
+            const stars = card.querySelectorAll('.review-card-stars svg');
+            stars.forEach((svg, i) => {
+                if (i >= rating) {
+                    svg.style.color = '#475569';
+                    svg.style.fill = 'none';
+                }
+            });
+        });
+        if (summaryStars) {
+            const svgs = summaryStars.querySelectorAll('svg');
+            svgs.forEach((svg, i) => {
+                if (i >= summaryRating) {
+                    svg.style.color = '#475569';
+                    svg.style.fill = 'none';
+                }
+            });
+        }
+
+    } catch (error) {
+        console.error('Error loading reviews:', error);
+        track.innerHTML = '<p class="text-center text-danger">Error al cargar las valoraciones.</p>';
+    }
 }
